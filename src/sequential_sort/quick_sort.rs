@@ -1,13 +1,13 @@
 use std::cmp;
 
-pub fn _quick_sort<T>(mut data: &Vec<T>, lo: usize, hi: usize)
+pub fn _quick_sort<T>(data: &mut Vec<T>, lo: usize, hi: usize)
 where T: cmp::PartialOrd + Clone
 {
 	if lo >= hi {
 		return;
 	}
 
-	let pivot = (lo + hi) / 2;
+	let pivot: usize = (lo + hi) / 2;
 	let mut i = lo;
 	let mut j = hi;
 
@@ -23,4 +23,7 @@ where T: cmp::PartialOrd + Clone
 		}
 		data.swap(i, j);
 	}
+
+	_quick_sort(data, lo, pivot);
+	_quick_sort(data, pivot + 1, hi);
 }
